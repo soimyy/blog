@@ -1,3 +1,7 @@
+const path = require("path");
+
+/**
+ */
 module.exports = {
   pathPrefix: `/blog`,
   siteMetadata: {
@@ -6,6 +10,16 @@ module.exports = {
     description: `soimyy blog`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-sass`,
+    },
+    {
+      resolve: "gatsby-plugin-layout",
+      options: {
+        component: require.resolve(`./src/layouts/index.jsx`),
+        // component: require.resolve(`./relative/path/to/layout/component`),
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -23,8 +37,10 @@ module.exports = {
     {
       resolve: "gatsby-plugin-root-import",
       options: {
-        // resolveModules: [path.join(__dirname, "libs")],
-        // utils: path.join(__dirname, "src", "components", "utilities"),
+        layouts: path.join(__dirname, "src", "layouts"),
+        pages: path.join(__dirname, "src", "pages"),
+        partials: path.join(__dirname, "src", "partials"),
+        components: path.join(__dirname, "src", "components"),
       },
     },
     {
